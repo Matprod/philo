@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 17:03:15 by Matprod           #+#    #+#             */
+/*   Updated: 2024/09/23 16:57:55 by Matprod          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+bool	is_dead(t_data *data)
+{
+	bool	ret;
+
+	pthread_mutex_lock(&data->death);
+	ret = data->is_dead;
+	pthread_mutex_unlock(&data->death);
+	return (ret);
+}
+
+bool	check_philo_full_ate(t_data *data)
+{
+	int				i;
+	unsigned int	philos_fully_fed;
+
+	philos_fully_fed = 0;
+	if (data->nb_of_dinner == -1)
+		return (FALSE);
+	pthread_mutex_lock(&data->meal);
+	i = 0;
+	while (i < (int)data->nb_philo)
+	{
+		if (data->philo[i].total_meal >= data->nb_of_dinner)
+			philos_fully_fed++;
+		i++;
+	}
+	pthread_mutex_unlock(&data->meal);
+	if (philos_fully_fed == data->nb_philo)
+		return (TRUE);
+	return (FALSE);
+}
+
+bool	wait_all_threads(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		printf("thread ready = %d\n", data->philo[i].thread_ready);
+		if (data->philo[i].thread_ready == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
