@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:33:25 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/20 16:46:09 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:10:33 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,20 @@ void	print_msg(t_philo *philo, char *str)
 	pthread_mutex_unlock(&philo->data->print);
 }
 
+void	print_info_ms(t_data *data)
+{
+	printf("Number of philo : %ld\n", data->nb_philo);
+	printf("Time to die : %ld\n", data->time_to_die);
+	printf("Time to eat : %ld\n", data->time_to_eat);
+	printf("Time to sleep : %ld\n", data->time_to_sleep);
+	printf("Number of dinner : %ld\n", data->nb_of_dinner);
+}
+
+void	print_info_sec(t_data *data)
+{
+	printf("Number of philo : %ld\n", data->nb_philo);
+	printf("Time to die : %ld\n", data->time_to_die / 1000);
+	printf("Time to eat : %ld\n", data->time_to_eat / 1000);
+	printf("Time to sleep : %ld\n", data->time_to_sleep / 1000);
+	printf("Number of dinner : %ld\n", data->nb_of_dinner);
+}

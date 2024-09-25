@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:39:13 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/23 17:05:45 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:10:22 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_usleep(long usec, t_data *data)
 
 	start = get_time();
 	elapsed = 0;
-
 	while (elapsed < usec && !is_dead(data) && !check_philo_full_ate(data))
 	{
 		elapsed = get_time() - start;
@@ -41,34 +40,6 @@ void	ft_usleep(long usec, t_data *data)
 			usleep(100);
 	}
 }
-
-/* void ft_usleep(long usec, t_data *data)
-{
-    long start;
-    long elapsed;
-    long rem;
-
-    start = get_time();
-    while (get_time() - start < usec)
-	{
-        if (is_end_simulation(data))
-            break ;
-        elapsed = get_time() - start;
-        rem = usec - elapsed;
-
-        // Sleep only if the remaining time is greater than a threshold to avoid tight spinlock
-        if (rem > 1000) {  // 1000 microseconds threshold
-            usleep(rem / 2);  // Sleep for half of the remaining time
-        }
-		else
-		{
-			while (get_time() - start < usec)
-				;
-		}
-
-    }
-} */
-
 
 void	ft_usleep_no_check(long usec)
 {

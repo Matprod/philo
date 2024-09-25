@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 17:49:38 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/23 17:02:04 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:04:12 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,36 +21,6 @@ void	ft_death(t_data *data, int i)
 	printf("%ld %ld died\n", get_time()
 		- data->start_time, data->philo[i].id);
 	pthread_mutex_unlock(&data->print);
-}
-
-long	get_last_dinner(t_philo *philo)
-{
-	long long	ret;
-
-	pthread_mutex_lock(&philo->data->death);
-	ret = philo->last_dinner;
-	pthread_mutex_unlock(&philo->data->death);
-	return (ret);
-}
-
-
-bool	get_full_ate(t_data *data)
-{
-	int				i;
-	unsigned int	count;
-
-	i = -1;
-	count = 0;
-	if (data->nb_of_dinner == -1)
-		return (false);
-	pthread_mutex_lock(&data->meal);
-	while ((unsigned int)++i < data->nb_philo)
-	{
-		if ((int)data->philo[i].total_meal >= data->nb_of_dinner)
-			count ++;
-	}
-	pthread_mutex_unlock(&data->meal);
-	return (count == data->nb_philo);
 }
 
 int	is_end_simulation(t_data *data)
@@ -78,7 +48,7 @@ int	is_end_simulation(t_data *data)
 	return (1);
 }
 
-bool	init_mutex(int argc, char **argv, t_data *data)
+bool	init_data_and_mutex(int argc, char **argv, t_data *data)
 {
 	int	i;
 

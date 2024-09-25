@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:46 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/21 14:09:01 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:10:28 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,18 @@ long	ft_atol(const char *str)
 	return (nbr * sign);
 }
 
-void	get_info_ms(t_data *data)
+void	free_all(t_data *data)
 {
-	printf("Number of philo : %ld\n", data->nb_philo);
-	printf("Time to die : %ld\n", data->time_to_die);
-	printf("Time to eat : %ld\n", data->time_to_eat);
-	printf("Time to sleep : %ld\n", data->time_to_sleep);
-	printf("Number of dinner : %ld\n", data->nb_of_dinner);
-}
+	int	i;
 
-void	get_info_sec(t_data *data)
-{
-	printf("Number of philo : %ld\n", data->nb_philo);
-	printf("Time to die : %ld\n", data->time_to_die * 1000);
-	printf("Time to eat : %ld\n", data->time_to_eat * 1000);
-	printf("Time to sleep : %ld\n", data->time_to_sleep * 1000);
-	printf("Number of dinner : %ld\n", data->nb_of_dinner);
+	i = -1;
+	while ((unsigned int)++i < data->nb_philo)
+		pthread_join(data->philo[i].thread, NULL);
+	while ((unsigned int)++i < data->nb_philo)
+		pthread_mutex_destroy(&data->forks[i]);
+	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->death);
+	pthread_mutex_destroy(&data->meal);
+	free(data->philo);
+	free(data->forks);
 }

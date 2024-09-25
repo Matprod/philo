@@ -12,11 +12,9 @@ CFLAGS				= -Wall -Wextra -Werror -I
 RM					= rm -f
 
 # Concatenate all source files
-SRCS 				= srcs/end_data.c\
-					srcs/print.c\
+SRCS 				= srcs/print.c\
 					srcs/main.c\
 					srcs/ft_usleep.c\
-					srcs/end_data.c\
 					srcs/init.c\
 					srcs/parsing.c\
 					srcs/philo.c\

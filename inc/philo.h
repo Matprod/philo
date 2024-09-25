@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:20:08 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/23 15:31:23 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:15:10 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 # define TRUE 1
 # define FALSE 0
 # define NEG_ARG "Arguments don't have to be negativ"
+# define FORK "fork"
+# define EAT "eat"
+# define SLEEP "sleep"
+# define THINK "think"
+# define DEAD "dead"
 
 /*						STRUCTURES						*/
 
@@ -63,9 +68,11 @@ typedef struct s_philo
 
 //parsing
 bool	parsing(int ac, char **av, t_data *data);
-bool	init_mutex(int argc, char **argv, t_data *data);
+bool	init_data_and_mutex(int argc, char **argv, t_data *data);
 bool	init_philo(t_data *data);
-//thread
+//philo_algo
+long	get_last_dinner(t_philo *philo);
+bool	get_full_ate(t_data *data);
 int		is_end_simulation(t_data *data);
 void	join_and_destroy_mutex(t_data *data);
 bool	is_dead(t_data *data);
@@ -79,20 +86,13 @@ bool	check_philo_full_ate(t_data *data);
 long	get_time(void);
 void	ft_usleep(long usec, t_data *data);
 void	ft_usleep_no_check(long usec);
-void precise_usleep(long usec, t_data *data);
 //utils
 bool	wait_all_threads(t_data *data);
 long	ft_atol(const char *nptr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	get_info_ms(t_data *data);
-void	get_info_sec(t_data *data);
-
+void	print_info_ms(t_data *data);
+void	print_info_sec(t_data *data);
 void	print_msg(t_philo *philo, char *str);
+void	free_all(t_data *data);
 
-
-
-
-
-
-
-# endif
+#endif
