@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
+/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:20:08 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/25 16:15:10 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:00:55 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define TRUE 1
 # define FALSE 0
 # define NEG_ARG "Arguments don't have to be negativ"
+# define ERR_ARG "Error with args : you need at least 5 args"
+# define ZERO_PHILO "Error : You can't have zero philsophers"
 # define FORK "fork"
 # define EAT "eat"
 # define SLEEP "sleep"
@@ -67,7 +69,7 @@ typedef struct s_philo
 /*						FUNCTIONS						*/
 
 //parsing
-bool	parsing(int ac, char **av, t_data *data);
+bool	parsing(int argc, char **argv, t_data *data);
 bool	init_data_and_mutex(int argc, char **argv, t_data *data);
 bool	init_philo(t_data *data);
 //philo_algo

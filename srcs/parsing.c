@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
+/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:24:55 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/25 16:13:06 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:00:25 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static bool	check_data(t_data *data)
 	return (SUCCESS);
 }
 
-static bool	if_one_philo(char **av)
+static bool	if_one_philo(char **argv)
 {
-	if (ft_atol(av[1]) == 1)
+	if (ft_atol(argv[1]) == 1)
 	{
 		printf("0 1 is thinking\n");
 		printf("0 1 has taken a fork\n");
-		usleep(ft_atol(av[2]) * 1000);
-		printf("%ld 1 died\n", ft_atol(av[2]));
+		usleep(ft_atol(argv[2]) * 1000);
+		printf("%ld 1 died\n", ft_atol(argv[2]));
 		return (EXIT_FAILURE);
 	}
 	return (SUCCESS);
@@ -51,7 +51,9 @@ static bool	if_one_philo(char **av)
 bool	parsing(int argc, char **argv, t_data *data)
 {
 	if (argc != 5 && argc != 6)
-		return (EXIT_FAILURE);
+		return (printf("%s\n", ERR_ARG));
+	if (ft_atol(argv[1]) == 0)
+		return (printf("%s\n", ZERO_PHILO));
 	if (if_one_philo(argv) == ERROR)
 		return (EXIT_FAILURE);
 	if (init_data_and_mutex(argc, argv, data) == ERROR)
