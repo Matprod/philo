@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
+/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:30:32 by Matprod           #+#    #+#             */
-/*   Updated: 2024/09/25 16:12:07 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:11:10 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (parsing(argc, argv, &data))
+	if (parsing(argc, argv, &data) == ERROR)
 		return (EXIT_FAILURE);
 	if (init_philo(&data) == ERROR)
 	{
